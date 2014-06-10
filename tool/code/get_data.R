@@ -30,9 +30,15 @@ getData <- function() {
 }
 data <- getData()
 
+
 ### Visualization Specifig Handling ###
 # The code below is indended to shape the data
 # to match the needs of the specific visualization intended.
+
+# In the example below we are fething activity data from
+# the HDX Repo CKAN instance and preparing it for graphing with
+# C3.js. C3 is loading the data from a CSV file for ease,
+# but the same could be done directly from a JSON stream.
 
 # Leave only the columns of interest
 # and store the resulting objects into
