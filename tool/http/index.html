@@ -21,6 +21,13 @@
               <div id="chart2"></div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-3">
+              <h3>Share of Datasets Created by HDX</h3>
+              <p>Number of datasets that were created by HDX. Color indicates the desired state of the system. Red = too many datasets created by HDX.</p>
+              <div id="chart3"></div>
+            </div>
+          </div>
         </div>
       </div>
 </div>
@@ -35,7 +42,10 @@
           x: 'Date_and_Time',
           x_format : '%Y-%m-%d',
           url: 'data/number_of_datasets.csv',
-          type: 'area-spline',
+          names: {
+            Number_of_Datasets: 'Number of Datasets'
+          },
+          type: 'area',
           labels: false,
           selection: {
             enabled: true,
@@ -50,16 +60,23 @@
               format : "%e %b %y"
             }
           }
+        },
+        subchart: {
+        	show: true
         }
       });
- 
+
       var chart2 = c3.generate({
         bindto: '#chart2',
         data: {
           x: 'Date_and_Time',
           x_format : '%Y-%m-%d',
           url: 'data/other_data.csv',
-          type: 'area-spline',
+          names: {
+            Number_of_Organizations: 'Number of Organizations',
+            Number_of_Users: 'Number of Users'
+          },
+          type: 'area',
           labels: false,
           selection: {
             enabled: true,
@@ -74,7 +91,30 @@
               format : "%e %b %y"
             }
           }
+        },
+        subchart: {
+        	show: true
         }
+      });
+
+      var chart3 = c3.generate({
+        bindto: '#chart3',
+        data: {
+          url: 'data/datasets_from_hdx.csv',
+          names: {
+            x: 'Datasets Created by HDX'
+          },
+          type: 'gauge'
+        },
+        gauge: {
+        	width: 20
+        },
+        color: {
+        pattern: ['#60B044', '#F6C600', '#F97600', '#FF0000'], // the three color levels for the percentage values.
+        threshold: {
+            values: [15, 20, 40, 60]
+        }
+    }
       });
 
 

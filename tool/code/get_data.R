@@ -28,17 +28,11 @@ getData <- function() {
     z <- data.frame(t(d))
     z
 }
-data <- getData()
-
+data <- suppressWarnings(getData())
 
 ### Visualization Specifig Handling ###
 # The code below is indended to shape the data
 # to match the needs of the specific visualization intended.
-
-# In the example below we are fething activity data from
-# the HDX Repo CKAN instance and preparing it for graphing with
-# C3.js. C3 is loading the data from a CSV file for ease,
-# but the same could be done directly from a JSON stream.
 
 # Leave only the columns of interest
 # and store the resulting objects into
@@ -58,4 +52,4 @@ names(other_data) <- c('Number_of_Organizations', 'Number_of_Users', 'Date_and_T
 write.csv(number_datasets, '~/tool/http/data/number_of_datasets.csv', row.names = FALSE)
 write.csv(other_data, '~/tool/http/data/other_data.csv', row.names = FALSE)
 
-cat('Data for chart has been refreshed.')
+message('Data for chart has been refreshed.')
